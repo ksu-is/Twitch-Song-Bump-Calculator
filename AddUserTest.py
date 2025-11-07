@@ -32,18 +32,21 @@ def add_user():
 
         if cont_choice == "r":
             try:
-                resub_tier = int(input("What tier? "))
+                resub_tier = int(input("Resub: What tier? "))
             except ValueError:
                 print("Invalid tier")
                 continue
             if resub_tier == 1:
                 amount = 5.99
+                print("Added Resub Tier",resub_tier, "to", user_name, "($5.99)")
             elif resub_tier == 2:
                 amount = 9.99
                 bump_status = True
+                print("Added Resub Tier",resub_tier, "to", user_name, "($9.99)")
             elif resub_tier == 3:
                 amount = 24.99
                 bump_status = True
+                print("Added Resub Tier",resub_tier, "to", user_name, "($24.99)")
             else:
                 print("Invalid tier")
                 continue
@@ -51,7 +54,8 @@ def add_user():
 
         elif cont_choice == "g":
             try:
-                gifted_amt = int(input("How many? "))
+                gifted_amt = int(input("Gifted Subs: How many? "))
+                print(gifted_amt,"Gifted Subs:",end = ' ')
                 gifted_tier = int(input("What Tier? "))
             except ValueError:
                 print("Invalid amount or tier")
@@ -60,30 +64,35 @@ def add_user():
                 total_gifted += gifted_amt * 5.99
                 num_tierone_gifted += gifted_amt
                 bump_status = gifted_amt >= 2
+                print("Added", str(gifted_amt), "Tier", gifted_tier, "Gifted to", user_name, "($"+str(gifted_amt * 5.99)+")")
             elif gifted_tier == 2:
                 total_gifted += gifted_amt * 9.99
                 num_tiertwo_gifted += gifted_amt
                 bump_status = True
+                print("Added", str(gifted_amt), "Tier", gifted_tier, "Gifted to", user_name, "($"+str(gifted_amt * 9.99)+")")
             elif gifted_tier == 3:
                 total_gifted += gifted_amt * 24.99
                 num_tierthree_gifted += gifted_amt
                 bump_status = True
+                print("Added", str(gifted_amt), "Tier", gifted_tier, "Gifted to", user_name, "($"+str(gifted_amt * 24.99)+")")
             else:
                 print("Invalid tier")
                 continue
 
         elif cont_choice == "b":
             try:
-                bit_amt = int(input("How many? "))
+                bit_amt = int(input("Bits: How many? "))
+                print("Added", str(bit_amt), "Bits to", user_name, "($"+str(bit_amt * 0.01)+")")
             except ValueError:
                 print("Invalid amount")
                 continue
-            total_bits += bit_amt * 0.01
+            total_bits += round(bit_amt,2) * 0.01
             bump_status = total_bits >= 5.00
 
         elif cont_choice == "d":
             try:
-                dono_amt = float(input("How much? "))
+                dono_amt = float(input("Dono: How much? "))
+                print("Added $", str(dono_amt), "to", user_name)
             except ValueError:
                 print("Invalid amount")
                 continue
